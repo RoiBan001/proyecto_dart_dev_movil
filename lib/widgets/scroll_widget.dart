@@ -23,7 +23,7 @@ class ScrollWidget extends StatelessWidget {
               MaterialPageRoute(
                 builder: (context) => DetalleScreen(
                   producto: productos[index],
-                  numero: index + 1,
+                  precio: '${index + 1}',
                 ),
               ),
             );

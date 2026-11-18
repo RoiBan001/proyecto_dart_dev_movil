@@ -6,11 +6,13 @@ class DetalleScreen extends StatelessWidget {
   const DetalleScreen({
     super.key,
     required this.producto,
-    required this.numero,
+    required this.precio,
+    this.icono = Icons.shopping_cart,
   });
 
   final String producto;
-  final int numero;
+  final String precio;
+  final IconData icono;
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +24,25 @@ class DetalleScreen extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(
-                Icons.shopping_cart,
-                size: 100,
-                color: Color.fromARGB(255, 185, 42, 78),
+              Hero(
+                tag: producto,
+                child: SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: FittedBox(
+                    child: Icon(
+                      icono,
+                      color: const Color.fromARGB(255, 185, 42, 78),
+                    ),
+                  ),
+                ),
               ),
               const SizedBox(height: 24),
               Text(producto, style: Theme.of(context).textTheme.headlineMedium),
               const SizedBox(height: 8),
               Text(
-                'Producto $numero',
-                style: Theme.of(context).textTheme.titleMedium,
+                '\$$precio',
+                style: Theme.of(context).textTheme.headlineSmall,
               ),
               const SizedBox(height: 32),
               ElevatedButton.icon(
